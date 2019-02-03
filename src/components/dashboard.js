@@ -1,11 +1,13 @@
-import React, {useState} from 'react'
+import React, {useState} from 'react';
 
 const Dashboard = (props) => {
+
   const [city, getCity] = useState('')
 
 
   const getCityVal = (e) => {getCity(e.target.value)}
 
+  const addCity = (e) => {console.log(city)}
 
   return (
     <React.Fragment>
@@ -18,9 +20,13 @@ const Dashboard = (props) => {
             className="form-control" 
             placeholder="Enter city name" 
             value={city}
-            onChange={(e)=>getCityVal(e)}/>
+            onChange={(e)=>getCityVal(e)}
+            />
           <div className="input-group-append">
-            <button className="btn btn-outline-secondary" type="button">Add</button>
+            <button 
+              className="btn btn-outline-secondary" 
+              onClick={addCity}
+              >Add</button>
           </div>
         </div>
         {/* message */}
