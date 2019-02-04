@@ -1,17 +1,29 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
+import getCityWeather from '../getCity'
+// import getUser from '../getUserData'
+
 
 const Dashboard = (props) => {
 
   const [city, getCity] = useState('')
 
+  // get user data information
+  useEffect(()=>{ 
+    // getUser()
+    getCityWeather('province of cebu')
+    // console.log(sample)
+  }, [])
+
 
   const getCityVal = (e) => {getCity(e.target.value)}
 
-  const addCity = (e) => {console.log(city)}
+  const addCity = (e) => {
+    // getUser('new york')
 
+  }
+    
   return (
     <React.Fragment>
-
       <div className="container">
         {/* input */}
         <div className="input-group mb-3 InputArea">
