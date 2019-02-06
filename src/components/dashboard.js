@@ -10,7 +10,7 @@ const Dashboard = (props) => {
   // get user data information
   useEffect(()=>{ 
     // getUser()
-    getCityWeather('province of cebu')
+    getCityWeather('alaska')
     // console.log(sample)
   }, [])
 

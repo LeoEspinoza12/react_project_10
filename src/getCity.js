@@ -1,12 +1,11 @@
 import axios from 'axios'
-import tz from 'tz-lookup'
+import tzLookUp from 'tz-lookup'
 import moment from 'moment'
 import timezone from 'moment-timezone'
 
 const getCity = (cityName) => {
 
   const weatherApi = 'd30dac624e8cc237cadaf5638568fb72'
-  const googleApi = ''
   const url = 'http://api.openweathermap.org/'
   const path = 'data/2.5/weather'
   const city = '?q=' + cityName
@@ -18,7 +17,7 @@ const getCity = (cityName) => {
           current: {
             city: cityName,
             countryCode:  res.data.sys.country,
-            localTime: 'localtimeHere',
+            localTime: localTime(res.data.coord.lat, res.data.coord.lon),
             currentTemp: {
               cel: celciusConverter(res.data.main.temp),
               fah: farenheitConverter(res.data.main.temp)
@@ -27,7 +26,7 @@ const getCity = (cityName) => {
           },
           weatherDesc: {
             left: {
-              sunrise: new Date(res.data.sys.sunrise * 1000),
+              sunrise: sunRiseSunSet(res.data.coord.lat, res.data.coord.lon, res.data.sys.sunrise),
               low: {
                 cel: celciusConverter(res.data.main.temp_min),
                 fah: farenheitConverter(res.data.main.temp_min)
@@ -38,7 +37,7 @@ const getCity = (cityName) => {
               visibility: res.data.visibility,
             },
             right: {
-              sunset: new Date(res.data.sys.sunset * 1000),
+              sunset: sunRiseSunSet(res.data.coord.lat, res.data.coord.lon, res.data.sys.sunset),
               high: {
                 cel: celciusConverter(res.data.main.temp_max),
                 fah: farenheitConverter(res.data.main.temp_max)
@@ -51,44 +50,7 @@ const getCity = (cityName) => {
           }
         }
 
-  // axios.asdfasdfadfs
-
-
-        let api = 'AIzaSyC5RrcE9xZ4OrgLeHmiU9DJg5LL3nqfIqw'
-        let lon = cityForecast.weatherDesc.left.longitude
-        let lat = cityForecast.weatherDesc.right.latitude
-        let date = new Date().getTime()
-        console.log(lat, lon)
-
-        // console.log(tz(lat, lon, date))
-
-        // console.log()
-        let sample = `https://maps.googleapis.com/maps/api/timezone/json?location=9.33,12.67&timestamp=1549264747624&key=AIzaSyC5RrcE9xZ4OrgLeHmiU9DJg5LL3nqfIqw`
-        // axios.get(`https://maps.googleapis.com/maps/api/timezone/json?location=${lat},${lon}&timestamp=${date}&key=${api}`)
-        //   .then(res => {
-        //       console.log(res.data)
-        //   }).catch(err => {
-        //       console.log(err)
-        //   })
-
-
-
-        // console.log(res.data)
-      // create Date object for current location
-      // var date = new Date();
-
-      // // convert to milliseconds, add local time zone offset and get UTC time in milliseconds
-      // var utcTime = date.getTime() + (date.getTimezoneOffset() * 60000);
-
-      // console.log('time', utcTime)
-      // // time offset for New Zealand is +12
-      // var timeOffset = 10;
-
-      // // create new Date object for a different timezone using supplied its GMT offset.
-      // var NewZealandTime = new Date(utcTime + (3600000 * timeOffset));
-
-      // console.log(NewZealandTime)
-
+      console.log(cityForecast)
 
     })
     .catch(err=>{
@@ -102,6 +64,22 @@ const getCity = (cityName) => {
 export default getCity
 
 
+const sunRiseSunSet = (lat, long, sunTime) => {
+  const coords = tzLookUp(lat, long)
+  const timeDiff = moment().tz(coords).parseZone().utcOffset()/60
+  console.log('countryDif', timeDiff)
+
+  const timeNow = new Date();
+  const currentTimeZoneOffsetInHours = timeNow.getTimezoneOffset()/60;
+  console.log('userDif', currentTimeZoneOffsetInHours)
+
+  const a = currentTimeZoneOffsetInHours * 60 * 60 * 1000
+  const b = timeDiff*60*60*1000
+
+  return moment(sunTime*1000+a+b).format('hh:mm a')
+
+}
+
 
 const celciusConverter = (val) => {
   const celStdVal = val - 273.15
@@ -114,6 +92,11 @@ const farenheitConverter = (val) => {
   return Math.round(fahStdVal)
 }
 
+const localTime = (lat, long) => {
+  const countryZone = tzLookUp(lat, long)
+  return moment().tz(countryZone).format('h:mm:ss a')
+  
+}
 
 
 
