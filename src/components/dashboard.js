@@ -1,25 +1,17 @@
-import React, {useState, useEffect} from 'react';
-import getCityWeather from '../getCity'
-// import getUser from '../getUserData'
-
+import React, {useState} from 'react';
+import {connect} from 'react-redux'
+import * as action from '../store/actions/index'
 
 const Dashboard = (props) => {
 
   const [city, getCity] = useState('')
 
-  // get user data information
-  useEffect(()=>{ 
-    // getUser()
-    getCityWeather('alaska')
-    // console.log(sample)
-  }, [])
-
+  
 
   const getCityVal = (e) => {getCity(e.target.value)}
 
-  const addCity = (e) => {
-    // getUser('new york')
-
+  const addCity = () => {
+    props.getCityWeather(city)
   }
     
   return (
@@ -114,4 +106,14 @@ const Dashboard = (props) => {
     </React.Fragment>
   )
 }
-export default Dashboard
+
+
+
+const mapDispatchToProps = (dispatch, ownProps) => {
+  return {
+    getCityWeather: (country)=>{dispatch(action.getWeather(country))}
+  }
+}
+
+export default connect(null, mapDispatchToProps)(Dashboard)
+
