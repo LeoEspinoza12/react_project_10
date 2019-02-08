@@ -42,3 +42,11 @@ export const localTime = (lat, long) => {
   return moment().tz(countryZone).format('h:mm:ss a')
 
 }
+
+
+export const updateObject = (oldObject, newObject) => {
+   return {
+    ...oldObject,
+    ...newObject
+  }
+}

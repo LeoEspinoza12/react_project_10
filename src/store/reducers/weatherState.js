@@ -1,16 +1,18 @@
 
 import * as actionType from '../actions/actionTypes'
-
+import {updateObject}  from '../../shared/utility'
 
 
 const initialState = {
-  sample: true
+  cityweather: []
 }
 
 
 
 const getWeather = (state, payload) => {
-  console.log('getWeather', payload)
+  return updateObject(state, {
+    cityweather: state.cityweather.concat(payload)
+  })
 }
 
 

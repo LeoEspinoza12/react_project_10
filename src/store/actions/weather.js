@@ -1,16 +1,34 @@
 import * as actionTypes from './actionTypes'
 import axios from 'axios'
-import {myApi, getWeatherUrl} from '../../config/config'
-import weatherData from '../../shared/weatherData'
+import {myApi, getWeatherUrl, getForecastUrl} from '../../config/config'
+import {getDataWeather, getDailyForecast}from '../../shared/weatherData'
+import {updateObject} from '../../shared/utility'
 
 export const getWeather = (cityName) => dispatch => {
-   const url = getWeatherUrl+cityName
-   axios.get(url + `&APPID=${myApi}`)
+   const weatherUrl = getWeatherUrl+cityName
+
+   // get the weather
+   axios.get(weatherUrl + `&APPID=${myApi}`)
      .then(res => {
-       dispatch({
-         type: actionTypes.GET_CITY_WEATHER,
-         payload: weatherData(res.data, cityName)
-        })
+       const cityForecast = getDataWeather(res.data, cityName)
+       
+       if(res.status === 200){
+
+        // get daily forecast url
+         const dailyForecastUrl = getForecastUrl + res.data.id + `&APPID=${myApi}`
+         axios.get(dailyForecastUrl)
+          .then(res => {
+          const foreCast = updateObject(cityForecast, getDailyForecast(res.data.list))
+          dispatch({
+            type: actionTypes.GET_CITY_WEATHER,
+            payload: foreCast
+           })
+          })
+          .catch(err => {
+            console.log(err)
+          })
+       }
+
      })
      .catch(err => {
        console.log('error', err)

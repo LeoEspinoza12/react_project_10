@@ -4,10 +4,48 @@ import {
   celciusConverter,
   farenheitConverter
 } from './utility'
+import moment from 'moment'
+
+export const getDailyForecast = (daily) => {
+  let dailyForecast = []
+  for(let i in daily){
+    if(daily[i].dt_txt.slice(11) === '00:00:00'){
+      dailyForecast.push({
+        day: moment(daily[i].dt_txt).format('ddd'),
+        icon: daily[i].weather[0].icon,
+        highTemp: {
+          cel: celciusConverter(daily[i].main.temp_max),
+          fah: farenheitConverter(daily[i].main.temp_max),
+        },
+        lowTemp: {
+          cel: celciusConverter(daily[i].main.temp_min),
+          fah: farenheitConverter(daily[i].main.temp_min),
+        }
+      })
+    }
+  }
+  if(dailyForecast.length !== 5){
+    dailyForecast.unshift({
+      day: moment(daily[0].dt_txt).format('ddd'),
+      icon: daily[0].weather[0].icon,
+      highTemp: {
+          cel: celciusConverter(daily[0].main.temp_max),
+          fah: farenheitConverter(daily[0].main.temp_max),
+        },
+        lowTemp: {
+          cel: celciusConverter(daily[0].main.temp_min),
+          fah: farenheitConverter(daily[0].main.temp_min),
+        }
+    })
+  }
+  return ({
+    dailyForecast: dailyForecast
+  })
+
+}
 
 
-
-const getDataWeather = (data, cityName) => {
+export const getDataWeather = (data, cityName) => {
 
   const cityForecast = {
     current: {
@@ -47,5 +85,3 @@ const getDataWeather = (data, cityName) => {
   }
   return cityForecast
 }
-
-export default getDataWeather

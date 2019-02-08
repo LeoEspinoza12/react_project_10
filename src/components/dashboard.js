@@ -12,8 +12,10 @@ const Dashboard = (props) => {
 
   const addCity = () => {
     props.getCityWeather(city)
+    getCity('')
   }
     
+  console.log(props.forecast)
   return (
     <React.Fragment>
       <div className="container">
@@ -108,6 +110,11 @@ const Dashboard = (props) => {
 }
 
 
+const mapStateToProps = (state, ownProps) => {
+  return {
+    forecast: state.cityweather
+  }
+}
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
@@ -115,5 +122,5 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   }
 }
 
-export default connect(null, mapDispatchToProps)(Dashboard)
+export default connect(mapStateToProps, mapDispatchToProps)(Dashboard)
 
