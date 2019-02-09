@@ -39,7 +39,7 @@ export const farenheitConverter = (val) => {
 // get the country localtime
 export const localTime = (lat, long) => {
   const countryZone = tzLookUp(lat, long)
-  return moment().tz(countryZone).format('h:mm:ss a')
+  return moment().tz(countryZone).format('h:mm a')
 
 }
 
@@ -49,4 +49,9 @@ export const updateObject = (oldObject, newObject) => {
     ...oldObject,
     ...newObject
   }
+}
+
+export const capitalizeWord = (text) => {
+  console.log(text.split(' '))
+  // console.log(text.split(' ').charAt(0).toUpperCase().substring(1).join(' '))
 }

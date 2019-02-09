@@ -1,5 +1,6 @@
 
 
 export {
-  getWeather
+  getWeather,
+  viewAll
 } from './weather'

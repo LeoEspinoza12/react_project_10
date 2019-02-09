@@ -1,36 +1,23 @@
-import React, { Component } from 'react';
-import Dashboard from './components/dashboard'
-import WeatherDashboard from './components/weatherDashboard'
+import React from 'react';
+import {connect} from 'react-redux'
+import Dashboard from './containers/dashboard'
+import WeatherDashboard from './containers/weatherDashboard'
 import './App.css';
 
-class App extends Component {
-
-  constructor(){
-    super();
-    this.state ={
-      city: '',
-      dashboard: false
-    }
-    this.onClick = this.onClick.bind(this)
-  }
-
-  onClick(){
-    this.setState({dashboard: !this.state.dashboard})
-  }
-
-  render() {
+const App = (props) => {
     return (
       <div className="App">
         <div className="Main">
-          {this.state.dashboard ? 
-            <WeatherDashboard
-              click={this.onClick}/> : 
-            <Dashboard 
-              click={this.onClick}/>}
+          {props.view === 'all' ? 
+            <WeatherDashboard /> : <Dashboard />}
         </div>
       </div>
     );
-  }
 }
 
-export default App;
+const mapStateToProps = (state, ownProps) => {
+  return {
+    prop: state.prop
+  }
+}
+export default connect(mapStateToProps)(App);

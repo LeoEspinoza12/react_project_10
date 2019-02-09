@@ -25,16 +25,28 @@ export const getWeather = (cityName) => dispatch => {
            })
           })
           .catch(err => {
-            console.log(err)
+            dispatch(error())
           })
        }
 
      })
      .catch(err => {
-       console.log('error', err)
-      //  if (err.response) {
-      //    const mesg = 'Please enter a valid city name';
-      //    return mesg
-      //  }
+       if(err){
+         dispatch(error())
+       }
      })
+}
+
+const error = () => {
+  return {
+    type: actionTypes.INVALID_CITY,
+    payload: {
+      mesg: 'Invalid city name!'
+    }
+  }
+}
+
+
+export const viewAll = () => {
+  
 }

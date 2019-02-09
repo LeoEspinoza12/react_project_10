@@ -217,7 +217,8 @@
 }
 .MainCity h5{
   margin-left: 0.9em;
-  font-size: 1.35em
+  font-size: 1.35em;
+  text-transform: capitalize
 }
 .MainTemp {
   width: 40%;
@@ -241,7 +242,17 @@
   font-size: 0.65em;
   color: rgb(27, 66, 134)
 }
-
+.noCity{
+  background: transparent !important;
+  height: 60% !important;
+  border: none !important
+}
+.noCity h5{
+  width: 100%;
+  font-size: 1.5em;
+  text-align: center;
+  color: rgb(238, 232, 239, 0.3);
+}
 
 
 
