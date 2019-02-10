@@ -48,5 +48,7 @@ const error = () => {
 
 
 export const viewAll = () => {
-  
+  return {
+    type: actionTypes.VIEW_ALL,
+  }
 }

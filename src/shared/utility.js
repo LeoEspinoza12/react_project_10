@@ -51,7 +51,3 @@ export const updateObject = (oldObject, newObject) => {
   }
 }
 
-export const capitalizeWord = (text) => {
-  console.log(text.split(' '))
-  // console.log(text.split(' ').charAt(0).toUpperCase().substring(1).join(' '))
-}

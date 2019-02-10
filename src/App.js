@@ -8,8 +8,7 @@ const App = (props) => {
     return (
       <div className="App">
         <div className="Main">
-          {props.view === 'all' ? 
-            <WeatherDashboard /> : <Dashboard />}
+          {props.viewAll ? <Dashboard/> : <WeatherDashboard /> }
         </div>
       </div>
     );
@@ -17,7 +16,7 @@ const App = (props) => {
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    prop: state.prop
+    viewAll: state.viewAll
   }
 }
 export default connect(mapStateToProps)(App);

@@ -26,12 +26,18 @@ const invalidCity = (state, payload) => {
 
 }
 
+const viewAll = (state) => {
+  return updateObject(state, {
+    viewAll: !state.viewAll
+  })
+}
 
 
 const weatherState = (state = initialState, action) => {
   switch(action.type){
     case (actionType.GET_CITY_WEATHER): return getWeather(state, action.payload);
     case (actionType.INVALID_CITY): return invalidCity(state, action.payload);
+    case (actionType.VIEW_ALL): return viewAll(state)
   default: return state
   }
 }

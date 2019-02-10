@@ -1,8 +1,10 @@
 import React from 'react'
-import moment from 'moment'
+import * as action from '../../store/actions/index'
 import {connect} from 'react-redux'
 
 const City = (props) => {
+
+
 
 let city = null
 if(props.cityWeather.length !== 0){
@@ -11,7 +13,7 @@ if(props.cityWeather.length !== 0){
           key={i}
           className="list-group-item">
           <div className="MainCity"
-              // onClick={props.click}
+              onClick={props.view}
               >
           <small>{weather.current.localTime}</small>
           <h5>{weather.current.city}</h5>
@@ -42,11 +44,17 @@ if(props.cityWeather.length !== 0){
   )
 }
 
+
 const mapStateToProps = (state, ownProps) => {
   return {
     cityWeather: state.cityweather,
-    temp: state.temp
+    temp: state.temp,
+  }
+}
+const mapDispatchToProps = (dispatch, ownProps) => {
+  return {
+    view: () => {dispatch(action.viewAll())}
   }
 }
 
-export default connect(mapStateToProps)(City)
+export default connect(mapStateToProps, mapDispatchToProps)(City)
