@@ -43,7 +43,7 @@ export const localTime = (lat, long) => {
 
 }
 
-
+// updates the state
 export const updateObject = (oldObject, newObject) => {
    return {
     ...oldObject,
@@ -51,3 +51,11 @@ export const updateObject = (oldObject, newObject) => {
   }
 }
 
+export const visibilityCompute = (num) => {
+  if(num === undefined){
+    return '0'
+  } else {
+    return Math.round(num.toFixed(0)/1000)
+  }
+
+}

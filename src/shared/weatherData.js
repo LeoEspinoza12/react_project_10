@@ -46,10 +46,10 @@ export const getDailyForecast = (daily) => {
 
 
 export const getDataWeather = (data, cityName) => {
-
   const cityForecast = {
     current: {
       city: cityName,
+      icon: data.weather[0].icon,
       countryCode: data.sys.country,
       localTime: localTime(data.coord.lat, data.coord.lon),
       currentTemp: {

@@ -1,6 +1,28 @@
 import React from 'react'
+import {connect} from 'react-redux'
 
-const Days = () => {
+
+const Days = (props) => {
+  
+const iconUrl = 'http://openweathermap.org/img/w/'
+
+  let days = props.city.dailyForecast.map(day=>{
+      return <div
+            key={day.day} >
+            <h5>{day.day}</h5>
+            <div className="img">
+              <img src={iconUrl+day.icon+'.png'} alt="" />
+            </div>
+            <div className="dailyTemp">
+              <small>{props.temp === 'celcius' ? 
+                      day.highTemp.cel : 
+                      day.highTemp.fah}&#176;</small> {' '}
+              <small>{props.temp === 'celcius' ? 
+                      day.lowTemp.cel : 
+                      day.lowTemp.fah}&#176;</small>
+            </div>
+          </div>
+  })
 
 
   return (
@@ -8,56 +30,7 @@ const Days = () => {
          { /* middle part */ }
       <div className="MidSection">
         <div className="SectionDiv">
-          <div>
-            <h5>Mon</h5>
-            <div className="img">
-              <img src="http://openweathermap.org/img/w/02n.png" alt="" />
-            </div>
-            <div className="dailyTemp">
-              <small>16&#176;</small>
-              <small> -16&#176;</small>
-            </div>
-          </div>
-          <div>
-            <h5>Tue</h5>
-            <div className="img">
-              <img src="http://openweathermap.org/img/w/01n.png" alt="" />
-            </div>
-            <div className="dailyTemp">
-              <small>9&#176;</small>
-              <small> -32&#176;</small>
-            </div>
-          </div>
-          <div>
-            <h5>Wed</h5>
-            <div className="img">
-              <img src="http://openweathermap.org/img/w/09d.png" alt="" />
-            </div>
-            <div className="dailyTemp">
-              <small>11&#176;</small>
-              <small> -1&#176;</small>
-            </div>
-          </div>
-          <div>
-            <h5>Thu</h5>
-            <div className="img">
-              <img src="http://openweathermap.org/img/w/11d.png" alt="" />
-            </div>
-            <div className="dailyTemp">
-              <small>-21&#176;</small>
-              <small> -9&#176;</small>
-            </div>
-          </div>
-          <div>
-            <h5>Mon</h5>
-            <div className="img">
-              <img src="http://openweathermap.org/img/w/13d.png" alt="" />
-            </div>
-            <div className="dailyTemp">
-              <small>-29&#176;</small>
-              <small> -10&#176;</small>
-            </div>
-          </div>
+          {days}
         </div>
       </div>
 
@@ -65,4 +38,10 @@ const Days = () => {
   )
 }
 
-export default Days
+const mapStateToProps = (state, ownProps) => {
+  return {
+    city: state.citySelected,
+    temp: state.temp
+  }
+}
+export default connect(mapStateToProps)(Days)

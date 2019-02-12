@@ -7,7 +7,8 @@ const initialState = {
   cityweather: [],
   viewAll: true,
   mesg: '',
-  temp: 'celcius'
+  temp: 'celcius',
+  citySelected: ''
 }
 
 
@@ -26,9 +27,16 @@ const invalidCity = (state, payload) => {
 
 }
 
-const viewAll = (state) => {
+const viewAll = (state, payload) => {
   return updateObject(state, {
-    viewAll: !state.viewAll
+    viewAll: !state.viewAll,
+    citySelected: payload
+  })
+}
+
+const changeTemp = (state, payload) => {
+  return updateObject(state, {
+    temp: payload
   })
 }
 
@@ -37,7 +45,8 @@ const weatherState = (state = initialState, action) => {
   switch(action.type){
     case (actionType.GET_CITY_WEATHER): return getWeather(state, action.payload);
     case (actionType.INVALID_CITY): return invalidCity(state, action.payload);
-    case (actionType.VIEW_ALL): return viewAll(state)
+    case (actionType.VIEW_ALL): return viewAll(state, action.payload)
+    case (actionType.CHANGE_TEMP): return changeTemp(state, action.temp)
   default: return state
   }
 }

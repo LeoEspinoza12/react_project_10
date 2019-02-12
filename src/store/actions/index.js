@@ -2,5 +2,6 @@
 
 export {
   getWeather,
-  viewAll
+  viewAll,
+  changeTemp
 } from './weather'

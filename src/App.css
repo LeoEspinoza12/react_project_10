@@ -40,6 +40,7 @@
   margin-top: 3.2em;
   font-size: 1.5em;
   font-weight: 700;
+  text-transform: capitalize
 }
 .TopDesc .time{
   font-size: 0.9em
@@ -53,6 +54,7 @@
 .TopDesc .weatherDesk {
   font-size: 1.5em;
   font-weight: 700;
+  text-transform: capitalize
 }
 
 
@@ -161,7 +163,10 @@
   font-weight: 600;
   text-align: right;
   padding-right: 0.5em;
-  font-size: 1.1em;
+  font-size: 1em;
+}
+.desc{
+  text-transform: capitalize
 }
 
 
@@ -251,7 +256,7 @@
   width: 100%;
   font-size: 1.5em;
   text-align: center;
-  color: rgb(238, 232, 239, 0.3);
+color: rgb(238, 232, 239, 0.3);
 }
 
 
@@ -297,6 +302,6 @@
   font-size: 0.75em;
   font-weight: 600
 }
-.farenheit {
+.unselected {
   color: rgb(160,190,190, 0.9)
 }

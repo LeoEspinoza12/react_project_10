@@ -4,6 +4,7 @@ import {myApi, getWeatherUrl, getForecastUrl} from '../../config/config'
 import {getDataWeather, getDailyForecast}from '../../shared/weatherData'
 import {updateObject} from '../../shared/utility'
 
+// get the data from the source
 export const getWeather = (cityName) => dispatch => {
    const weatherUrl = getWeatherUrl+cityName
 
@@ -37,6 +38,8 @@ export const getWeather = (cityName) => dispatch => {
      })
 }
 
+
+// return error message if the city is invalid
 const error = () => {
   return {
     type: actionTypes.INVALID_CITY,
@@ -46,9 +49,18 @@ const error = () => {
   }
 }
 
+// change temp metric
+export const changeTemp = (temp) => {
+  return {
+    type: actionTypes.CHANGE_TEMP,
+    temp: temp
+  }
+}
 
-export const viewAll = () => {
+// view weather in details
+export const viewAll = (cityWeather) => {
   return {
     type: actionTypes.VIEW_ALL,
+    payload: cityWeather
   }
 }

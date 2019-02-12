@@ -13,7 +13,7 @@ if(props.cityWeather.length !== 0){
           key={i}
           className="list-group-item">
           <div className="MainCity"
-              onClick={props.view}
+              onClick={()=>props.view(weather)}
               >
           <small>{weather.current.localTime}</small>
           <h5>{weather.current.city}</h5>
@@ -27,7 +27,6 @@ if(props.cityWeather.length !== 0){
           <span aria-hidden="true">x</span>
         </button>
       </li> 
-
   })
 } else {
   city =<li className="list-group-item noCity">
@@ -53,7 +52,7 @@ const mapStateToProps = (state, ownProps) => {
 }
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
-    view: () => {dispatch(action.viewAll())}
+    view: (cityWeather) => {dispatch(action.viewAll(cityWeather))}
   }
 }
 
