@@ -1,7 +1,10 @@
 
 
+
+
 export {
   getWeather,
   viewAll,
-  changeTemp
+  changeTemp,
+  deleteCity
 } from './weather'

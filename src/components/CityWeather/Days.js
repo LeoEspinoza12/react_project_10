@@ -1,6 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
-
+import { Trail } from 'react-spring/renderprops'
 
 const Days = (props) => {
   
@@ -27,13 +27,21 @@ const iconUrl = 'http://openweathermap.org/img/w/'
 
   return (
     <React.Fragment>
-         { /* middle part */ }
-      <div className="MidSection">
-        <div className="SectionDiv">
-          {days}
-        </div>
-      </div>
-
+      <Trail
+        items={days}
+        keys={item => item.key}
+        from={{opacity: 0}}
+        to={{opacity:1}}
+        config={{delay: 400, duration: 800}}
+      >
+        {item => spring => 
+          <div className="MidSection" style={spring}>
+            <div className="SectionDiv">
+              {item}
+            </div>
+          </div>
+        }
+      </Trail>
     </React.Fragment>
   )
 }
@@ -44,4 +52,5 @@ const mapStateToProps = (state, ownProps) => {
     temp: state.temp
   }
 }
+
 export default connect(mapStateToProps)(Days)

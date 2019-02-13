@@ -57,6 +57,14 @@ export const changeTemp = (temp) => {
   }
 }
 
+export const deleteCity = (city) => {
+  return {
+    type: actionTypes.DELETE_CITY,
+    payload: city
+  }
+
+}
+
 // view weather in details
 export const viewAll = (cityWeather) => {
   return {

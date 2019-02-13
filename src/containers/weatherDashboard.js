@@ -11,7 +11,7 @@ const weatherDashboard = (props) => {
     <React.Fragment>
       <GenDesc />
       <FiveDaysWeather/>
-      <DayForecast />
+      <DayForecast/>
     </React.Fragment>
   )
 }

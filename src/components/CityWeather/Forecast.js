@@ -1,12 +1,19 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {visibilityCompute} from '../../shared/utility'
+import { Spring } from 'react-spring/renderprops'
+
 
 const Forecast = (props) => {
   return (
     <React.Fragment>
-       {/* bottom */}
-      <div className="Bottom">
+      <Spring
+        from={{opacity: 0}}
+        to={{opacity: 1}}
+        config={{delay: 800, duration: 800}}>
+        {spring => 
+        
+      <div className="Bottom" style={spring}>
         <div className="BottomSection">
           <div className="left">
             <div>
@@ -69,6 +76,8 @@ const Forecast = (props) => {
           
         </div>
       </div>
+      }
+      </Spring>
     </React.Fragment>
   )
 }

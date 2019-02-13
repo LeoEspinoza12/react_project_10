@@ -1,6 +1,7 @@
 import React from 'react'
 import * as action from '../../store/actions/index'
 import {connect} from 'react-redux'
+import { Transition } from 'react-spring/renderprops'
 
 const City = (props) => {
 
@@ -23,7 +24,10 @@ if(props.cityWeather.length !== 0){
                 weather.current.currentTemp.cel : 
                 weather.current.currentTemp.fah}&#176;</h5>
         </div>
-        <button type="button" className="close" aria-label="Close">
+        <button 
+          className="close" 
+          aria-label="Close"
+          onClick={()=>props.deleteCity(weather.current.city)}>
           <span aria-hidden="true">x</span>
         </button>
       </li> 
@@ -36,13 +40,27 @@ if(props.cityWeather.length !== 0){
 
   return (
     <React.Fragment>
-       <div className="list-group list-group-flush ListOfCity">
-          {city}
-        </div>
+      <Transition
+        items={city}
+        keys={item => item.key}
+        from={{opacity: 0}}
+        enter={{opacity: 1}}
+        leave={{opacity: 0}}
+        config={{duration: 500}}
+        >
+          {item => props => 
+            <div className="list-group list-group-flush ListOfCity" style={props}>
+              {item}
+            </div>
+          }
+      </Transition>
     </React.Fragment>
   )
 }
 
+  // <div className="list-group list-group-flush ListOfCity">
+  //   {city}
+  // </div>
 
 const mapStateToProps = (state, ownProps) => {
   return {
@@ -52,7 +70,8 @@ const mapStateToProps = (state, ownProps) => {
 }
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
-    view: (cityWeather) => {dispatch(action.viewAll(cityWeather))}
+    view: (cityWeather) => {dispatch(action.viewAll(cityWeather))},
+    deleteCity: (city) => {dispatch(action.deleteCity(city))}
   }
 }
 
