@@ -4,7 +4,7 @@ import * as action from '../../store/actions/index'
 import { Spring } from 'react-spring/renderprops'
 
 const GenDesc = (props) => {
-const iconUrl = 'http://openweathermap.org/img/w/'
+const iconUrl = 'https://openweathermap.org/img/w/'
 
   return (
     <React.Fragment>

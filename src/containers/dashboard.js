@@ -1,11 +1,16 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import Input from '../components/Dashboard/InputArea'
 import City from '../components/Dashboard/City'
 import Footer from '../components/Dashboard/Footer'
 import { Spring } from 'react-spring/renderprops'
+import {createLog} from '../shared/utility'
+
+
 const Dashboard = (props) => {
 
- 
+  useEffect(()=>{
+    createLog()
+  }, [])
     
   return (
     <React.Fragment>

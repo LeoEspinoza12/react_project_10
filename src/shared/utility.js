@@ -3,7 +3,8 @@
 import tzLookUp from 'tz-lookup'
 import moment from 'moment'
 import timezone from 'moment-timezone'
-
+import {firebaseURL} from '../config/config'
+import axios from 'axios'
 
 export const sunRiseSunSet = (lat, long, sunTime) => {
   
@@ -57,5 +58,12 @@ export const visibilityCompute = (num) => {
   } else {
     return Math.round(num.toFixed(0)/1000)
   }
+}
 
+export const createLog = () => {
+  const date = new Date()
+
+  axios.post(firebaseURL, date)
+    .then(res=>{return true})
+    .catch(err=>{return false})
 }

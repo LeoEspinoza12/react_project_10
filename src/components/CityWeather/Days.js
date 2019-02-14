@@ -1,10 +1,10 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import { Trail } from 'react-spring/renderprops'
+import { Spring } from 'react-spring/renderprops'
 
 const Days = (props) => {
   
-const iconUrl = 'http://openweathermap.org/img/w/'
+const iconUrl = 'https://openweathermap.org/img/w/'
 
   let days = props.city.dailyForecast.map(day=>{
       return <div
@@ -27,21 +27,18 @@ const iconUrl = 'http://openweathermap.org/img/w/'
 
   return (
     <React.Fragment>
-      <Trail
-        items={days}
-        keys={item => item.key}
+      <Spring
         from={{opacity: 0}}
         to={{opacity:1}}
-        config={{delay: 400, duration: 800}}
-      >
-        {item => spring => 
+        config={{delay: 400, duration: 800}}>
+        {spring => 
           <div className="MidSection" style={spring}>
             <div className="SectionDiv">
-              {item}
+              {days}
             </div>
           </div>
         }
-      </Trail>
+      </Spring>
     </React.Fragment>
   )
 }

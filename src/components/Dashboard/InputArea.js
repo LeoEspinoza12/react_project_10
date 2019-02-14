@@ -43,7 +43,6 @@ const InputArea = (props) => {
   )
 }
 
-
 const mapStateToProps = (state, ownProps) => {
   return { mesg: state.mesg }
 }

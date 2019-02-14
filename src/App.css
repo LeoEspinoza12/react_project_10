@@ -37,7 +37,7 @@
   color: rgb(225,225,225)
 }
 .TopDesc .province{
-  margin-top: 3.2em;
+  margin-top: 1.5em;
   font-size: 1.5em;
   font-weight: 700;
   text-transform: capitalize
@@ -49,7 +49,7 @@
   font-weight: 700
 }
 .TopDesc .temp{
-  font-size: 9em;
+  font-size: 7em;
 }
 .TopDesc .weatherDesk {
   font-size: 1.5em;
@@ -145,28 +145,33 @@
 }
 .label,
 .value{
-  width: 50%;
   float: left;
   height: 100%;
   margin: 0;
   padding-top: 0.6em;
 }
 .label{
+  width:40%;
   color: rgb(205,223,254);
   padding-top: 0.9em;
   text-align: left;
+  padding-top: 1.5em;
   padding-left: 0.5em;
-  font-size: 0.9em;
+  font-size: 0.7em;
   font-weight: 500;
 }
 .value {
+  width: 60%;
   font-weight: 600;
   text-align: right;
   padding-right: 0.5em;
-  font-size: 1em;
+  font-size: 0.85em;
 }
 .desc{
-  text-transform: capitalize
+  text-transform: capitalize;
+  /* color: red; */
+    padding-top: 1.5em;
+  font-size: 0.7em
 }
 
 

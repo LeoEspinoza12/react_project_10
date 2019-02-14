@@ -3,3 +3,8 @@
 /node_modules
 package-lock.json
 src/config/config
+
+.firebase/
+.firebaserc
+build/
+firebase.json
