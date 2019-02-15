@@ -3,8 +3,10 @@
 import tzLookUp from 'tz-lookup'
 import moment from 'moment'
 import timezone from 'moment-timezone'
-import {firebaseURL} from '../config/config'
+import UAParser from 'ua-parser-js'
 import axios from 'axios'
+import {firebaseURL} from '../config/config'
+
 
 export const sunRiseSunSet = (lat, long, sunTime) => {
   
@@ -61,9 +63,20 @@ export const visibilityCompute = (num) => {
 }
 
 export const createLog = () => {
-  const date = new Date()
+ const date = new Date() 
+  const uaParse = new UAParser()
+  const user = {
+    date: moment(date).format('LLL'),
+    browser: uaParse.getBrowser(),
+    device: uaParse.getDevice(),
+    processor: uaParse.getCPU(),
+    engine: uaParse.getEngine(),
+  }
+  return user
+}
 
-  axios.post(firebaseURL, date)
-    .then(res=>{return true})
-    .catch(err=>{return false})
+export const addSearch = (city, userId) => {
+  axios.put(firebaseURL+'/'+userId+'/search.json', {...city})
+    .then(res =>{return true})
+    .catch(err => {return false})
 }

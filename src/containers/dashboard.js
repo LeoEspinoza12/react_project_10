@@ -1,15 +1,16 @@
 import React, {useEffect} from 'react';
+import * as action from '../store/actions/index'
+import {connect} from 'react-redux'
 import Input from '../components/Dashboard/InputArea'
 import City from '../components/Dashboard/City'
 import Footer from '../components/Dashboard/Footer'
 import { Spring } from 'react-spring/renderprops'
-import {createLog} from '../shared/utility'
 
 
 const Dashboard = (props) => {
 
   useEffect(()=>{
-    createLog()
+    props.initSearch()    
   }, [])
     
   return (
@@ -33,6 +34,10 @@ const Dashboard = (props) => {
   )
 }
 
-
-export default Dashboard
+const mapDispatchToProps = (dispatch, ownProps) => {
+  return {
+    initSearch: () => { dispatch(action.userLog()) }
+  }
+}
+export default connect(null, mapDispatchToProps)(Dashboard)
 

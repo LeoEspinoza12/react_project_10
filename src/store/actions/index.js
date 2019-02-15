@@ -6,5 +6,6 @@ export {
   getWeather,
   viewAll,
   changeTemp,
-  deleteCity
+  deleteCity,
+  userLog
 } from './weather'

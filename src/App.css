@@ -87,24 +87,26 @@
   margin-left: 0.9%;
 }
 .SectionDiv div h5{
-  height: 30%;
-  padding-top: .5em;
+  height: 25%;
+  font-size: 1em;
+  /* background: red; */
+  color: white;
+  padding-top: 0em;
   margin: 0
 }
 .SectionDiv div .img {
-  height: 35%;
+  height: 50%;
   width: 100%;
-  margin-top: 0
+  margin-top: 0;
 }
 .SectionDiv div .dailyTemp {
-  height: 35%;
+  height: 25%;
   width: 100%;
-  padding-top: .5em
 }
 .dailyTemp small {
   width: 50%;
   font-weight: 600;
-  font-size: 1.1em;
+  font-size: 1em;
 }
 
 

@@ -8,15 +8,19 @@ const initialState = {
   viewAll: true,
   mesg: '',
   temp: 'celcius',
-  citySelected: ''
+  citySelected: '',
+  userLogId: null,
+  searchedCity: []
 }
 
 
 
 const getWeather = (state, payload) => {
+  const searched = state.searchedCity.push(payload.searchedCity)
   return updateObject(state, {
-    cityweather: state.cityweather.concat(payload),
-    mesg: ''
+    cityweather: state.cityweather.concat(payload.forecast),
+    mesg: '',
+    searchedCity: searched
   })
 }
 
@@ -49,6 +53,12 @@ const deleteCity = (state, payload) => {
   })
 }
 
+const userLog = (state, payload) => {
+  return updateObject(state, {
+    userLogId: payload
+  })
+}
+
 const weatherState = (state = initialState, action) => {
   switch(action.type){
     case (actionType.GET_CITY_WEATHER): return getWeather(state, action.payload);
@@ -56,6 +66,7 @@ const weatherState = (state = initialState, action) => {
     case (actionType.VIEW_ALL): return viewAll(state, action.payload);
     case (actionType.CHANGE_TEMP): return changeTemp(state, action.temp);
     case (actionType.DELETE_CITY): return deleteCity(state, action.payload)
+    case (actionType.USER_LOG): return userLog(state, action.payload)
 
   default: return state
   }

@@ -12,7 +12,7 @@ const InputArea = (props) => {
    }
 
    const addCity = () => {
-     props.getCityWeather(city)
+     props.getCityWeather(city, props.userLogId, props.searchedCity)
      getCity('')
    }
 
@@ -44,11 +44,18 @@ const InputArea = (props) => {
 }
 
 const mapStateToProps = (state, ownProps) => {
-  return { mesg: state.mesg }
+  return { 
+    mesg: state.mesg,
+    userLogId: state.userLogId,
+    searchedCity: state.searchedCity
+  }
 }
 
 const mapDispatchToProps = (dispatch, ownProps) => {
-  return { getCityWeather: (country)=>{dispatch(action.getWeather(country))} }
+  return { getCityWeather: (country, userLogId, searchedCity)=>{
+      dispatch(action.getWeather(country, userLogId, searchedCity))
+    } 
+  }
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(InputArea)

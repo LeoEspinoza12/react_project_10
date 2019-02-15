@@ -5,5 +5,5 @@ export const getWeatherUrl = 'https://api.openweathermap.org/data/2.5/weather?q=
 export const getForecastUrl = 'https://api.openweathermap.org/data/2.5/forecast?id='
 
 
-export const firebaseURL = 'https://aimanski-weatherapp.firebaseio.com/weatherApp.json'
+export const firebaseURL = 'https://aimanski-weatherapp.firebaseio.com/weatherApp'
 
