@@ -17,9 +17,9 @@ const iconUrl = 'https://openweathermap.org/img/w/'
               <small>{props.temp === 'celcius' ? 
                       day.highTemp.cel : 
                       day.highTemp.fah}&#176;</small> {' '}
-              <small>{props.temp === 'celcius' ? 
+              {/* <small>{props.temp === 'celcius' ? 
                       day.lowTemp.cel : 
-                      day.lowTemp.fah}&#176;</small>
+                      day.lowTemp.fah}&#176;</small> */}
             </div>
           </div>
   })

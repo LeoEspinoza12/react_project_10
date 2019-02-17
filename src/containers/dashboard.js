@@ -1,18 +1,10 @@
-import React, {useEffect} from 'react';
-import * as action from '../store/actions/index'
-import {connect} from 'react-redux'
+import React from 'react';
 import Input from '../components/Dashboard/InputArea'
 import City from '../components/Dashboard/City'
 import Footer from '../components/Dashboard/Footer'
 import { Spring } from 'react-spring/renderprops'
 
-
 const Dashboard = (props) => {
-
-  useEffect(()=>{
-    props.initSearch()    
-  }, [])
-    
   return (
     <React.Fragment>
       <Spring
@@ -28,16 +20,11 @@ const Dashboard = (props) => {
               <Footer />
             </div>
           }
-
       </Spring>
     </React.Fragment>
   )
 }
 
-const mapDispatchToProps = (dispatch, ownProps) => {
-  return {
-    initSearch: () => { dispatch(action.userLog()) }
-  }
-}
-export default connect(null, mapDispatchToProps)(Dashboard)
+
+export default Dashboard
 

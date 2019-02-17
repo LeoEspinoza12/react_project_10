@@ -43,7 +43,6 @@ export const farenheitConverter = (val) => {
 export const localTime = (lat, long) => {
   const countryZone = tzLookUp(lat, long)
   return moment().tz(countryZone).format('h:mm a')
-
 }
 
 // updates the state
@@ -54,6 +53,7 @@ export const updateObject = (oldObject, newObject) => {
   }
 }
 
+// visibility calculator
 export const visibilityCompute = (num) => {
   if(num === undefined){
     return '0'
@@ -62,18 +62,19 @@ export const visibilityCompute = (num) => {
   }
 }
 
+// create log to the server
 export const createLog = () => {
- const date = new Date() 
   const uaParse = new UAParser()
+  const date = new Date()
   const user = {
-    date: moment(date).format('LLL'),
+    data: moment(date).format('LLL'),
     browser: uaParse.getBrowser(),
     device: uaParse.getDevice(),
     processor: uaParse.getCPU(),
-    engine: uaParse.getEngine(),
   }
   return user
 }
+
 
 export const addSearch = (city, userId) => {
   axios.put(firebaseURL+'/'+userId+'/search.json', {...city})

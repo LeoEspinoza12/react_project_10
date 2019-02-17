@@ -16,11 +16,10 @@ const initialState = {
 
 
 const getWeather = (state, payload) => {
-  const searched = state.searchedCity.push(payload.searchedCity)
   return updateObject(state, {
     cityweather: state.cityweather.concat(payload.forecast),
     mesg: '',
-    searchedCity: searched
+    searchedCity: payload.searchedCity
   })
 }
 

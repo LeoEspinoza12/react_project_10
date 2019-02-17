@@ -8,16 +8,17 @@ import {createLog, addSearch} from '../../shared/utility'
 // get the data from the source
 export const getWeather = (cityName, userId, searchedCity) => dispatch => {
 
-  const cityList = searchedCity
-  // cityList.push(cityName)
-  console.log(cityList)
-
+  
   const weatherUrl = getWeatherUrl+cityName
-
-   // get the weather
-   axios.get(weatherUrl + `&APPID=${myApi}`)
-     .then(res => {
-       addSearch(cityList, userId)
+  
+  // get the weather
+  axios.get(weatherUrl + `&APPID=${myApi}`)
+  .then(res => {
+    
+    const cityList = searchedCity
+    cityList.push(cityName)
+    
+    addSearch(cityList, userId)
        const cityForecast = getDataWeather(res.data, cityName)
 
        if(res.status === 200){

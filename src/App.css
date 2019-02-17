@@ -95,18 +95,19 @@
   margin: 0
 }
 .SectionDiv div .img {
-  height: 50%;
+  height: 45%;
   width: 100%;
   margin-top: 0;
 }
 .SectionDiv div .dailyTemp {
-  height: 25%;
+  height: 30%;
   width: 100%;
 }
 .dailyTemp small {
-  width: 50%;
+  width: 100%;
+  color: white;
   font-weight: 600;
-  font-size: 1em;
+  font-size: 1.3em;
 }
 
 
