@@ -16,3 +16,5 @@ The app is fully functional and you can use it [here.](https://aimanski-weathera
 * How to deploy app to [Google Firebase](https://firebase.google.com/).
 * Manipulate state changes using [Redux](https://redux.js.org/).
 * Create a smooth front-end designs using [react-spring](https://www.npmjs.com/package/react-spring).
+
+# Watch app video clip [here](https://www.youtube.com/watch?v=_M7zkeqpyD8)
