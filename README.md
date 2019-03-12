@@ -1,7 +1,7 @@
 # Weather App
 
 A Weather App built from [ReactJS](https://reactjs.org/) and deployed to [Google Firebase](https://firebase.google.com/).
-All the data provided in this app are from [Open Weather Map API.](https://openweathermap.org/api)
+All the data provided in this app are from [Open Weather Map API.](https://openweathermap.org/api). It is fully accurate and provides real time forecast.
 The app is fully functional and you can use it [here.](https://aimanski-weatherapp.firebaseapp.com/)
 
 # The PhotoBlog App looks like this
